@@ -12,6 +12,8 @@ import java.io.IOException;
 
 public class Metadata {
 
+    public Metadata(){}
+
     public Metadata(String type, String lexval){
         this.type = type;
         this.lexval = lexval;

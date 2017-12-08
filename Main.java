@@ -9,6 +9,7 @@ import globals.GlobalInfo;
 import metadata.Metadata;
 import java.io.IOException;
 import java.util.HashMap;
+import java.io.*;
 
 public class Main {
 
@@ -139,6 +140,29 @@ public class Main {
 
 		if(queue == null)
 			return;
+
+		String xml = "<root>\n";
+		for(Metadata data : queue){
+			xml += "\t<metadata>\n\t";
+			xml += "\t<type>" + data.type + "</type>\n\t";
+			xml += "\t<lexval>" + data.lexval + "</lexval>\n";
+			xml += "\t</metadata>\n";
+		}
+		xml += "</root>\n";
+
+	  	BufferedWriter output = null;
+        try {
+            File file = new File("lexical.xml");
+            output = new BufferedWriter(new FileWriter(file));
+            output.write(xml);
+        } catch ( IOException e ) {
+            e.printStackTrace();
+        } finally {
+          if ( output != null ) {
+            output.close();
+          }
+        }
+
 
 		for (Metadata meta : queue)
 			ts.put(meta.lexval, meta);
