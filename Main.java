@@ -72,19 +72,21 @@ public class Main {
 		}
 	}
 
-	public static void main(String[] args) throws Exception {
-			
+	private static List<Metadata> lexicalAnalisys() throws Exception{
 		DeterministicAutomaton automaton = getAutomaton();
 		fillReconizerStates(automaton);
-		automaton.printTable();
 
 		List<String> errors = new ArrayList<String>();
 		List<Metadata> queue = new ArrayList<Metadata>();
-		HashMap<String,Metadata> ts = new HashMap<String, Metadata>();
 
-
-		String font = "int a: \"0\"; if a=2 then print:a;";
-		font = font.replace(":", " : ").replace(";", " ; ").replace("=", " = ").replace("  ", " ");
+		String font = String.join(" ",SingletonInput.readFile("font.txt"));
+		font = font.replace(":", " : ")
+		.replace(";", " ; ")
+		.replace("!=", " != ")
+		.replace("=", " = ")
+		.replace("\t", "")
+		.replace("  ", " ")
+		.replace("	", " ");// this is different by the last!!
 		for (String word : font.split(" ")){
 
 			Rule rule = automaton.getRuleFromToken(GlobalInfo.getInstance().getInitialState());
@@ -93,74 +95,52 @@ public class Main {
 				throw new IOException("impossible to find initial state");
 
 			for (Character character : word.toCharArray()){
-
 				if(rule == null)
 					break;
-
-				List<String> productions = rule.productions.get(character.toString());
-				
+				List<String> productions = rule.productions.get(character.toString());		
 				if(productions == null){
 					rule = null;
 					break;
 				}
-				
 				rule = automaton.getRuleFromToken(productions.get(0));
 			}
 
-			if(rule != null){
-				queue.add(new Metadata("0", rule.getRule(), word));
-			}
-			else if(word.matches("-?\\d+(\\.\\d+)?")){  //match a number with optional '-' and decimal.)
-				queue.add(new Metadata("1", "number", word));
-			}
-			else if(word.matches("-?\"[^\"]+\"?")){
-				queue.add(new Metadata("2", "string", word));
-			}
-			else{
-				if(word.matches("-?\\d[^.]+?"))
-					errors.add("id " + word + " cannot start by number");
-				else
-					queue.add(new Metadata("3", "id", word));
-			}
+			if(rule != null && GlobalInfo.getInstance().isFinalState(rule.getRule()))
+				queue.add(new Metadata(rule.getRule(), word));
+			else
+				errors.add("token '" + word + "' cannot be recognized");
 		}
 
-		int total = queue.size();
-		for(int i=0; i< total; i++){
+		if(errors.size() > 0){
+			for(String error : errors)
+				System.out.println(error);
+			return null;
+		}
+		else{
 
-			if(i + 3 >= total)
-				continue;
+			for (Metadata meta : queue){
+				System.out.println("type: " + meta.type);
+				if(!meta.lexval.equals(meta.type))
+					System.out.println("lexval: " + meta.lexval);
+				System.out.println("---------------------");
+			}
 
-			Metadata current = queue.get(i);
-
-			if(!current.id.equals("0"))
-				continue;
-			
-			if(! Arrays.asList("INT.,DBL.,CHR.,BOOL.".split(",")).contains(current.type))
-				continue;
-			
-			if(queue.get(i+1).id != "3")
-				continue;
-			
-			if(!queue.get(i+2).type.equals("TP"))
-				continue;
-			
-			if(! Arrays.asList("1,2".split(",")).contains(queue.get(i+3).id))
-				continue;
-
-			queue.get(i+1).lexVal  = queue.get(i+3).value;
-			System.out.println(queue.get(i+1).value + "=" + queue.get(i+3).value);
-			
+			for (Metadata meta : queue)
+				System.out.print(meta.type + " ");
+			System.out.println("");
 		}
 
-		for (Metadata meta : queue)	{
-			ts.put(meta.value, meta);
-		}	
+		return queue;
+	}
 
-		for (Metadata meta : ts.values()){
-			System.out.println("id: " + meta.id);
-			System.out.println("type: " + meta.type);
-			System.out.println("value: " + meta.value);
-			System.out.println("---------------------");
-		}
+	public static void main(String[] args) throws Exception {
+		List<Metadata>  queue = lexicalAnalisys();
+		HashMap<String,Metadata> ts = new HashMap<String, Metadata>();
+
+		if(queue == null)
+			return;
+
+		for (Metadata meta : queue)
+			ts.put(meta.lexval, meta);
 	}
 }

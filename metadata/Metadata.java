@@ -12,14 +12,11 @@ import java.io.IOException;
 
 public class Metadata {
 
-    public Metadata(String id, String type, String value){
-        this.id = id;
+    public Metadata(String type, String lexval){
         this.type = type;
-        this.value = value;
+        this.lexval = lexval;
     }
 
-    public String id = "";
     public String type = "";
-    public String value = "";
-    public String lexVal = "";
+    public String lexval = "";
 }

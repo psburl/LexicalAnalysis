@@ -27,7 +27,7 @@ public final class SingletonInput {
         return instance;
     }
       
-    private static List<String> readFile(String path){
+    public static List<String> readFile(String path){
     	
     	try{
     		return Files.readAllLines(Paths.get(path));

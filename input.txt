@@ -7,38 +7,49 @@ int
 dbl
 chr
 bool
-<S> ::= i<IF> | i<IN> | e<EL> | t<TH> | p<PR> | d<DB> | c<CH> | b<BO>|;<SC>|:<TP>|"<ASP>|=<EQ>
-<IF> ::= f<IF.>
-<IF.> ::= $_EPSLON
+lt
+gt
+<S> ::= i<IF> | i<IN> | e<EL> | t<TH> | p<PR> | d<DB> | c<CH> | b<BO>|;<;>|:<:>|"<CONST>|=<=>|!<!>|g<g>|l<l>|j<var>|k<var>|x<var>|y<var>|z<var>|0<literal>|1<literal>|2<literal>|3<literal>|4<literal>|5<literal>|6<literal>|7<literal>|8<literal>|9<literal>
+<!> ::= =<!=>
+<!=> :: $_EPSLON
+<l> ::= t<lt>
+<g> ::= t<gt>
+<literal> ::= 0<literal>|1<literal>|2<literal>|3<literal>|4<literal>|5<literal>|6<literal>|7<literal>|8<literal>|9<literal>|$_EPSLON
+<var> ::= j<var>|k<var>|x<var>|y<var>|z<var>|$_EPSLON
+<lt> ::= $_EPSLON
+<gt> ::= $_EPSLON
+<IF> ::= f<if>
+<if> ::= $_EPSLON
 <IN> ::= n<INT>
-<INT> ::= t<INT.>
-<INT.>::=$_EPSLON
+<INT> ::= t<int>
+<int>::=$_EPSLON
 <EL> ::= l<ELS>
 <ELS> ::= s<ELSE>
-<ELSE> ::= e<ELSE.>
-<ELSE.> ::= $_EPSLON | i<ELSEIF>
-<ELSEIF> ::= f<ELSEIF.>
-<ELSEIF.> ::=  $_EPSLON
+<ELSE> ::= e<else>
+<else>::= $_EPSLON | i<ELSEIF>
+<ELSEIF> ::= f<elseif>
+<elseif> ::=  $_EPSLON
 <TH> ::= h<THE>
 <THE> ::= e<THEN>
-<THEN> ::= n<THEN.>
-<THEN.> ::= $_EPSLON
+<THEN> ::= n<then>
+<then> ::= $_EPSLON
 <PR> ::= r<PRI>
 <PRI> ::= i<PRIN>
 <PRIN> ::= n<PRINT>
-<PRINT> ::= t<PRINT.>
-<PRINT.> ::= $_EPSLON
+<PRINT> ::= t<print>
+<print> ::= $_EPSLON
 <DB> ::= b<DBL>
-<DBL> ::= l<DBL.>
-<DBl.> ::= $_EPSLON
+<DBL> ::= l<dbl>
+<dbl> ::= $_EPSLON
 <CH> ::= h<CHR>
-<CHR> ::= r<CHR.>
-<CHR.> ::= $_EPSLON
+<CHR> ::= r<chr>
+<chr> ::= $_EPSLON
 <BO> ::= o<BOO>
 <BOO> ::= o<BOOL>
-<BOOL> ::= l<BOOL.>
-<BOOL.> ::= $_EPSLON
-<SC> ::= $_EPSLON
-<TP> ::=  $_EPSLON
-<ASP> ::= $_EPSLON
-<EQ> ::= $_EPSLON
+<BOOL> ::= l<bool>
+<bool> ::= $_EPSLON
+<;> ::= $_EPSLON
+<:> ::=  $_EPSLON
+<CONST> ::= a<CONST>|b<CONST>|c<CONST>|d<CONST>|e<CONST>|f<CONST>|g<CONST>|h<CONST>|i<CONST>|j<CONST>|k<CONST>|l<CONST>|m<CONST>|n<CONST>|o<CONST>|p<CONST>|q<CONST>|r<CONST>|s<CONST>|t<CONST>|u<CONST>|v<CONST>|w<CONST>|x<CONST>|y<CONST>|z<CONST>|1<CONST>|2<CONST>|3<CONST>|4<CONST>|5<CONST>|6<CONST>|7<CONST>|8<CONST>|9<CONST>|0<CONST>|"<const>
+<const> ::= $_EPSLON
+<=>::= $_EPSLON

@@ -44,6 +44,10 @@ public class GlobalInfo {
 	public List<String> getFinalStates() {
 		return finalStates;
 	}
+
+	public boolean isFinalState(String state){
+		return instance.finalStates.contains(state);
+	}
 	
 	public List<String> getAllStates() {
 		return states;

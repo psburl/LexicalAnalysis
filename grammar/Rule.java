@@ -52,7 +52,7 @@ public class Rule{
 				}
 			}
 		}catch(Exception e){
-			System.out.println("Exception on construct Rule. Error:" + e.getMessage());
+		//	System.out.println("Exception on construct Rule. Error:" + e.getMessage());
 		}
 	}
 		

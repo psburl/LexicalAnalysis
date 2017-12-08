@@ -1,0 +1,7 @@
+int x: "xyz";
+if xyz lt 12452 then 
+	print:xyz;
+elseif
+	print:"a";
+else
+	print:1;
