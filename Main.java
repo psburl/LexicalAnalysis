@@ -13,6 +13,8 @@ import java.io.*;
 
 public class Main {
 
+	static boolean  showTable = false;
+
 	private static DeterministicAutomaton getAutomaton() throws Exception{
 
 		List<String> input = SingletonInput.getInstance().getContentLines();
@@ -132,14 +134,19 @@ public class Main {
 		}
 		else{
 			System.out.println("OK! ");
-			/*
-			for (Metadata meta : queue){
-				System.out.println("type: " + meta.type);
-				if(!meta.lexval.equals(meta.type))
-					System.out.println("lexval: " + meta.lexval);
-				System.out.println("---------------------");
+
+			if(showTable){
+				for (Metadata meta : queue){ 
+
+					if(meta.type.equals("\n"))
+						continue;
+
+					System.out.println("type: " + meta.type);
+					if(!meta.lexval.equals(meta.type))
+						System.out.println("lexval: " + meta.lexval);
+					System.out.println("---------------------");
+				}
 			}
-			*/
 			for (Metadata meta : queue)
 				System.out.print(meta.type + " ");
 			System.out.println("");
@@ -149,6 +156,11 @@ public class Main {
 	}
 
 	public static void main(String[] args) throws Exception {
+		
+		if(args.length > 0)
+			if(args[0].equals("-t"))
+				showTable = true;
+		
 		List<Metadata>  queue = lexicalAnalisys();
 		HashMap<String,Metadata> ts = new HashMap<String, Metadata>();
 
