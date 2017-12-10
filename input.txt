@@ -9,13 +9,13 @@ chr
 bool
 lt
 gt
-<S> ::= i<IF> | i<IN> | e<EL> | t<TH> | p<PR> | d<DB> | c<CH> | b<BO>|;<;>|:<:>|"<CONST>|=<=>|!<!>|g<g>|l<l>|j<var>|k<var>|x<var>|y<var>|z<var>|0<literal>|1<literal>|2<literal>|3<literal>|4<literal>|5<literal>|6<literal>|7<literal>|8<literal>|9<literal>
+<S> ::= i<IF> | i<IN> | e<EL> | t<TH> | p<PR> | d<DB> | c<CH> | b<BO>|;<;>|:<:>|"<CONST>|=<=>|!<!>|g<g>|l<l>|j<id>|k<id>|x<id>|y<id>|z<id>|0<literal>|1<literal>|2<literal>|3<literal>|4<literal>|5<literal>|6<literal>|7<literal>|8<literal>|9<literal>
 <!> ::= =<!=>
 <!=> :: $_EPSLON
 <l> ::= t<lt>
 <g> ::= t<gt>
 <literal> ::= 0<literal>|1<literal>|2<literal>|3<literal>|4<literal>|5<literal>|6<literal>|7<literal>|8<literal>|9<literal>|$_EPSLON
-<var> ::= j<var>|k<var>|x<var>|y<var>|z<var>|$_EPSLON
+<id> ::= j<id>|k<id>|x<id>|y<id>|z<id>|$_EPSLON
 <lt> ::= $_EPSLON
 <gt> ::= $_EPSLON
 <IF> ::= f<if>

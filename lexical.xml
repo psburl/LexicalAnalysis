@@ -1,98 +1,136 @@
 <root>
 	<metadata>
-		<type>int</type>
-		<lexval>int</lexval>
+		<type><![CDATA[int]]></type>
+		<lexval><![CDATA[int]]></lexval>
 	</metadata>
 	<metadata>
-		<type>var</type>
-		<lexval>x</lexval>
+		<type><![CDATA[id]]></type>
+		<lexval><![CDATA[x]]></lexval>
 	</metadata>
 	<metadata>
-		<type>:</type>
-		<lexval>:</lexval>
+		<type><![CDATA[:]]></type>
+		<lexval><![CDATA[:]]></lexval>
 	</metadata>
 	<metadata>
-		<type>const</type>
-		<lexval>"xyz"</lexval>
+		<type><![CDATA[const]]></type>
+		<lexval><![CDATA["axyz"]]></lexval>
 	</metadata>
 	<metadata>
-		<type>;</type>
-		<lexval>;</lexval>
+		<type><![CDATA[;]]></type>
+		<lexval><![CDATA[;]]></lexval>
 	</metadata>
 	<metadata>
-		<type>if</type>
-		<lexval>if</lexval>
+		<type><![CDATA[
+]]></type>
+		<lexval><![CDATA[
+]]></lexval>
 	</metadata>
 	<metadata>
-		<type>var</type>
-		<lexval>xyz</lexval>
+		<type><![CDATA[if]]></type>
+		<lexval><![CDATA[if]]></lexval>
 	</metadata>
 	<metadata>
-		<type>lt</type>
-		<lexval>lt</lexval>
+		<type><![CDATA[id]]></type>
+		<lexval><![CDATA[xyz]]></lexval>
 	</metadata>
 	<metadata>
-		<type>literal</type>
-		<lexval>12452</lexval>
+		<type><![CDATA[lt]]></type>
+		<lexval><![CDATA[lt]]></lexval>
 	</metadata>
 	<metadata>
-		<type>then</type>
-		<lexval>then</lexval>
+		<type><![CDATA[literal]]></type>
+		<lexval><![CDATA[12452]]></lexval>
 	</metadata>
 	<metadata>
-		<type>print</type>
-		<lexval>print</lexval>
+		<type><![CDATA[then]]></type>
+		<lexval><![CDATA[then]]></lexval>
 	</metadata>
 	<metadata>
-		<type>:</type>
-		<lexval>:</lexval>
+		<type><![CDATA[
+]]></type>
+		<lexval><![CDATA[
+]]></lexval>
 	</metadata>
 	<metadata>
-		<type>var</type>
-		<lexval>xyz</lexval>
+		<type><![CDATA[print]]></type>
+		<lexval><![CDATA[print]]></lexval>
 	</metadata>
 	<metadata>
-		<type>;</type>
-		<lexval>;</lexval>
+		<type><![CDATA[:]]></type>
+		<lexval><![CDATA[:]]></lexval>
 	</metadata>
 	<metadata>
-		<type>elseif</type>
-		<lexval>elseif</lexval>
+		<type><![CDATA[id]]></type>
+		<lexval><![CDATA[xyz]]></lexval>
 	</metadata>
 	<metadata>
-		<type>print</type>
-		<lexval>print</lexval>
+		<type><![CDATA[;]]></type>
+		<lexval><![CDATA[;]]></lexval>
 	</metadata>
 	<metadata>
-		<type>:</type>
-		<lexval>:</lexval>
+		<type><![CDATA[
+]]></type>
+		<lexval><![CDATA[
+]]></lexval>
 	</metadata>
 	<metadata>
-		<type>const</type>
-		<lexval>"a"</lexval>
+		<type><![CDATA[elseif]]></type>
+		<lexval><![CDATA[elseif]]></lexval>
 	</metadata>
 	<metadata>
-		<type>;</type>
-		<lexval>;</lexval>
+		<type><![CDATA[
+]]></type>
+		<lexval><![CDATA[
+]]></lexval>
 	</metadata>
 	<metadata>
-		<type>else</type>
-		<lexval>else</lexval>
+		<type><![CDATA[print]]></type>
+		<lexval><![CDATA[print]]></lexval>
 	</metadata>
 	<metadata>
-		<type>print</type>
-		<lexval>print</lexval>
+		<type><![CDATA[:]]></type>
+		<lexval><![CDATA[:]]></lexval>
 	</metadata>
 	<metadata>
-		<type>:</type>
-		<lexval>:</lexval>
+		<type><![CDATA[const]]></type>
+		<lexval><![CDATA["a"]]></lexval>
 	</metadata>
 	<metadata>
-		<type>literal</type>
-		<lexval>1</lexval>
+		<type><![CDATA[
+]]></type>
+		<lexval><![CDATA[
+]]></lexval>
 	</metadata>
 	<metadata>
-		<type>;</type>
-		<lexval>;</lexval>
+		<type><![CDATA[else]]></type>
+		<lexval><![CDATA[else]]></lexval>
+	</metadata>
+	<metadata>
+		<type><![CDATA[
+]]></type>
+		<lexval><![CDATA[
+]]></lexval>
+	</metadata>
+	<metadata>
+		<type><![CDATA[print]]></type>
+		<lexval><![CDATA[print]]></lexval>
+	</metadata>
+	<metadata>
+		<type><![CDATA[:]]></type>
+		<lexval><![CDATA[:]]></lexval>
+	</metadata>
+	<metadata>
+		<type><![CDATA[literal]]></type>
+		<lexval><![CDATA[1]]></lexval>
+	</metadata>
+	<metadata>
+		<type><![CDATA[;]]></type>
+		<lexval><![CDATA[;]]></lexval>
+	</metadata>
+	<metadata>
+		<type><![CDATA[
+]]></type>
+		<lexval><![CDATA[
+]]></lexval>
 	</metadata>
 </root>

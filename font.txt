@@ -1,4 +1,4 @@
-int x: "xyz";
+int x: "axyz";
 if xyz lt 12452 then 
 	print:xyz;
 elseif

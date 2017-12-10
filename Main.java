@@ -68,19 +68,22 @@ public class Main {
 				if(recognizer == null)
 					break;
 				rule.setRecognizedToken(token);	
-				System.out.println("rule " + recognizer.getRule() + " recognize '" + token + "'");
+				//System.out.println("rule " + recognizer.getRule() + " recognize '" + token + "'");
 			}
 		}
 	}
 
 	private static List<Metadata> lexicalAnalisys() throws Exception{
+		
+		System.out.println("Starting lexical analisys...");
+
 		DeterministicAutomaton automaton = getAutomaton();
 		fillReconizerStates(automaton);
 
 		List<String> errors = new ArrayList<String>();
 		List<Metadata> queue = new ArrayList<Metadata>();
 
-		String font = String.join(" ",SingletonInput.readFile("font.txt"));
+		String font = String.join("\n",SingletonInput.readFile("font.txt"));
 		font = font.replace(":", " : ")
 		.replace(";", " ; ")
 		.replace("!=", " != ")
@@ -88,44 +91,53 @@ public class Main {
 		.replace("\t", "")
 		.replace("  ", " ")
 		.replace("	", " ");// this is different by the last!!
-		for (String word : font.split(" ")){
 
-			Rule rule = automaton.getRuleFromToken(GlobalInfo.getInstance().getInitialState());
 
-			if(rule == null)
-				throw new IOException("impossible to find initial state");
+		System.out.println("Starting recognizing tokens..");
+		for(String line : font.split("\n")){
+			for (String word : line.split(" ")){
 
-			for (Character character : word.toCharArray()){
+				Rule rule = automaton.getRuleFromToken(GlobalInfo.getInstance().getInitialState());
+
 				if(rule == null)
-					break;
-				List<String> productions = rule.productions.get(character.toString());		
-				if(productions == null){
-					rule = null;
-					break;
+					throw new IOException("impossible to find initial state");
+
+				for (Character character : word.toCharArray()){
+					if(rule == null)
+						break;
+					List<String> productions = rule.productions.get(character.toString());		
+					if(productions == null){
+						rule = null;
+						break;
+					}
+					rule = automaton.getRuleFromToken(productions.get(0));
 				}
-				rule = automaton.getRuleFromToken(productions.get(0));
+
+				if(rule != null && GlobalInfo.getInstance().isFinalState(rule.getRule()))
+					queue.add(new Metadata(rule.getRule(), word));
+				else
+					errors.add("token '" + word + "' cannot be recognized");
 			}
 
-			if(rule != null && GlobalInfo.getInstance().isFinalState(rule.getRule()))
-				queue.add(new Metadata(rule.getRule(), word));
-			else
-				errors.add("token '" + word + "' cannot be recognized");
+			queue.add(new Metadata("\n", "\n"));
 		}
 
 		if(errors.size() > 0){
+			System.out.println("Error: ");
 			for(String error : errors)
 				System.out.println(error);
 			return null;
 		}
 		else{
-
+			System.out.println("OK! ");
+			/*
 			for (Metadata meta : queue){
 				System.out.println("type: " + meta.type);
 				if(!meta.lexval.equals(meta.type))
 					System.out.println("lexval: " + meta.lexval);
 				System.out.println("---------------------");
 			}
-
+			*/
 			for (Metadata meta : queue)
 				System.out.print(meta.type + " ");
 			System.out.println("");
@@ -138,17 +150,22 @@ public class Main {
 		List<Metadata>  queue = lexicalAnalisys();
 		HashMap<String,Metadata> ts = new HashMap<String, Metadata>();
 
-		if(queue == null)
-			return;
 
-		String xml = "<root>\n";
-		for(Metadata data : queue){
-			xml += "\t<metadata>\n\t";
-			xml += "\t<type>" + data.type + "</type>\n\t";
-			xml += "\t<lexval>" + data.lexval + "</lexval>\n";
-			xml += "\t</metadata>\n";
+		String xml = "";
+		if(queue != null){
+			xml = "<root>\n";
+			for(Metadata data : queue){
+				
+				xml += "\t<metadata>\n\t";
+				xml += "\t<type><![CDATA[" + data.type + "]]></type>\n\t";
+				xml += "\t<lexval><![CDATA[" + data.lexval + "]]></lexval>\n";
+				xml += "\t</metadata>\n";
+			}
+			xml += "</root>\n";
 		}
-		xml += "</root>\n";
+		else{
+			xml = "<root></root>\n";
+		}
 
 	  	BufferedWriter output = null;
         try {
@@ -162,9 +179,5 @@ public class Main {
             output.close();
           }
         }
-
-
-		for (Metadata meta : queue)
-			ts.put(meta.lexval, meta);
 	}
 }
