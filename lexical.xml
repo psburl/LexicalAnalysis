@@ -96,6 +96,10 @@
 		<lexval><![CDATA["a"]]></lexval>
 	</metadata>
 	<metadata>
+		<type><![CDATA[;]]></type>
+		<lexval><![CDATA[;]]></lexval>
+	</metadata>
+	<metadata>
 		<type><![CDATA[
 ]]></type>
 		<lexval><![CDATA[

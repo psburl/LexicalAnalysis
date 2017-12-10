@@ -94,7 +94,9 @@ public class Main {
 
 
 		System.out.println("Starting recognizing tokens..");
+		int count = 0;
 		for(String line : font.split("\n")){
+			count++;
 			for (String word : line.split(" ")){
 
 				Rule rule = automaton.getRuleFromToken(GlobalInfo.getInstance().getInitialState());
@@ -116,7 +118,7 @@ public class Main {
 				if(rule != null && GlobalInfo.getInstance().isFinalState(rule.getRule()))
 					queue.add(new Metadata(rule.getRule(), word));
 				else
-					errors.add("token '" + word + "' cannot be recognized");
+					errors.add("token '" + word + "' cannot be recognized. Line: " + count);
 			}
 
 			queue.add(new Metadata("\n", "\n"));
