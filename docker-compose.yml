@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  lexical-analysis:
+    image: java:8-jdk-alpine
+    working_dir: /app
+    entrypoint: |
+      sh -c '
+        ./build.sh
+        ./run.sh
+      '
+    volumes:
+    - ./:/app
